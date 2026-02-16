@@ -1,0 +1,15 @@
+[
+  {
+    "modid": "${modid}",
+    "name": "${modname}",
+    "description": "1.12.2 backport workspace for Just Dire Things.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "https://github.com/direwolf20-mc/justdirethings",
+    "authorList": ["Direwolf20"],
+    "credits": "Backport scaffold generated for migration planning.",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
