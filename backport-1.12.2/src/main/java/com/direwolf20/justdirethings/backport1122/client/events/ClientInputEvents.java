@@ -31,25 +31,11 @@ public final class ClientInputEvents {
             return;
         }
 
-        EnumHand activeHand = resolveSettingsToolHand(player);
-        if (activeHand == null) {
+        ItemStack heldMain = player.getHeldItem(EnumHand.MAIN_HAND);
+        if (!(heldMain.getItem() instanceof ItemSettingsTool)) {
             return;
         }
 
-        NetworkHandler.INSTANCE.sendToServer(new PacketToolAction(activeHand, player.isSneaking()));
-    }
-
-    private static EnumHand resolveSettingsToolHand(EntityPlayerSP player) {
-        ItemStack heldMain = player.getHeldItem(EnumHand.MAIN_HAND);
-        if (heldMain.getItem() instanceof ItemSettingsTool) {
-            return EnumHand.MAIN_HAND;
-        }
-
-        ItemStack heldOff = player.getHeldItem(EnumHand.OFF_HAND);
-        if (heldOff.getItem() instanceof ItemSettingsTool) {
-            return EnumHand.OFF_HAND;
-        }
-
-        return null;
+        NetworkHandler.INSTANCE.sendToServer(new PacketToolAction(EnumHand.MAIN_HAND, player.isSneaking()));
     }
 }

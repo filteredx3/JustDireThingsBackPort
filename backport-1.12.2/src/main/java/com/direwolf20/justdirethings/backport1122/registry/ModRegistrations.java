@@ -31,8 +31,6 @@ public final class ModRegistrations {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        REGISTERED_ITEMS.clear();
-
         Item ferricoreIngot = withName(new ItemFerricoreIngot(), "ferricore_ingot");
         event.getRegistry().register(ferricoreIngot);
         REGISTERED_ITEMS.add(ferricoreIngot);

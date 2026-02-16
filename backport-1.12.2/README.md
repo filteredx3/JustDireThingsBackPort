@@ -66,14 +66,6 @@ Run static QA validations from repo root:
 ./scripts/backport/run_1122_qa_checks.sh
 ```
 
-## Release helper
-Build and copy the backport jar into `release/` from repo root:
-
-```bash
-# prerequisites: Java 8 + Gradle 4.9
-./scripts/backport/build_release_jar.sh
-```
-
 ## Result
 - Built jar appears under `build/libs/`.
 - This is an **early functional backport slice**, still far from feature parity with modern Just Dire Things.
