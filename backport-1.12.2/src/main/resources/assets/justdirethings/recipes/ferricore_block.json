@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FFF",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "justdirethings:ferricore_ingot"
+    }
+  },
+  "result": {
+    "item": "justdirethings:ferricore_block"
+  }
+}

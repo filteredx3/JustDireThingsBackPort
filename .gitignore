@@ -26,3 +26,6 @@ extra-mods
 extra-api
 
 repo
+
+# backport workspace wrapper binary is intentionally excluded for PR systems that block binaries
+backport-1.12.2/gradle/wrapper/gradle-wrapper.jar
