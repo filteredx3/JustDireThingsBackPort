@@ -29,14 +29,27 @@ public class TileEntityMachineCore extends TileEntity implements ITickable {
         protected void onContentsChanged(int slot) {
             markDirty();
         }
-
-        @Override
-        public boolean isItemValid(int slot, ItemStack stack) {
-            return stack.getItem() == ModObjectHolders.FERRICORE_INGOT;
-        }
     };
 
-    private final MachineEnergyStorage energyStorage = new MachineEnergyStorage(MAX_ENERGY);
+    private final EnergyStorage energyStorage = new EnergyStorage(MAX_ENERGY) {
+        @Override
+        public int receiveEnergy(int maxReceive, boolean simulate) {
+            int received = super.receiveEnergy(maxReceive, simulate);
+            if (received > 0 && !simulate) {
+                markDirty();
+            }
+            return received;
+        }
+
+        @Override
+        public int extractEnergy(int maxExtract, boolean simulate) {
+            int extracted = super.extractEnergy(maxExtract, simulate);
+            if (extracted > 0 && !simulate) {
+                markDirty();
+            }
+            return extracted;
+        }
+    };
 
     @Override
     public void update() {
@@ -101,7 +114,14 @@ public class TileEntityMachineCore extends TileEntity implements ITickable {
         super.readFromNBT(compound);
         ticksExisted = compound.getInteger(NbtDataKeys.MACHINE_TICKS);
         inventory.deserializeNBT(compound.getCompoundTag("Inventory"));
-        energyStorage.setEnergyStored(compound.getInteger(NbtDataKeys.MACHINE_ENERGY));
+
+        int stored = compound.getInteger(NbtDataKeys.MACHINE_ENERGY);
+        int current = energyStorage.getEnergyStored();
+        if (stored > current) {
+            energyStorage.receiveEnergy(stored - current, false);
+        } else if (stored < current) {
+            energyStorage.extractEnergy(current - stored, false);
+        }
     }
 
     @Override
@@ -154,37 +174,5 @@ public class TileEntityMachineCore extends TileEntity implements ITickable {
             return null;
         }
         return super.getCapability(capability, facing);
-    }
-
-    private class MachineEnergyStorage extends EnergyStorage {
-        private MachineEnergyStorage(int capacity) {
-            super(capacity);
-        }
-
-        @Override
-        public int receiveEnergy(int maxReceive, boolean simulate) {
-            int received = super.receiveEnergy(maxReceive, simulate);
-            if (received > 0 && !simulate) {
-                markDirty();
-            }
-            return received;
-        }
-
-        @Override
-        public int extractEnergy(int maxExtract, boolean simulate) {
-            int extracted = super.extractEnergy(maxExtract, simulate);
-            if (extracted > 0 && !simulate) {
-                markDirty();
-            }
-            return extracted;
-        }
-
-        private void setEnergyStored(int stored) {
-            if (stored < 0) {
-                energy = 0;
-            } else {
-                energy = Math.min(stored, capacity);
-            }
-        }
     }
 }

@@ -40,7 +40,7 @@ public class PacketToolAction implements IMessage {
             player.getServerWorld().addScheduledTask(new Runnable() {
                 @Override
                 public void run() {
-                    EnumHand targetHand = message.hand == 1 ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND;
+                    EnumHand targetHand = message.hand == 0 ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND;
                     ItemStack stack = player.getHeldItem(targetHand);
                     if (stack.getItem() instanceof ItemSettingsTool) {
                         ItemSettingsTool.applyServerAction(player, stack, message.sneaking);
