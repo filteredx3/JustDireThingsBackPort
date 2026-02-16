@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "justdirethings:ferricore_block"
+    }
+  ],
+  "result": {
+    "item": "justdirethings:ferricore_ingot",
+    "count": 9
+  }
+}

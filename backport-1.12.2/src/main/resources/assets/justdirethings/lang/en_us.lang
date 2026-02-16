@@ -1,0 +1,9 @@
+item.justdirethings.ferricore_ingot.name=Ferricore Ingot
+item.justdirethings.settings_tool.name=Settings Tool
+tile.justdirethings.ferricore_block.name=Ferricore Block
+tile.justdirethings.machine_core.name=Machine Core
+entity.justdirethings.training_dummy.name=Training Dummy
+itemGroup.justdirethings=Just Dire Things
+
+key.categories.justdirethings=Just Dire Things
+key.justdirethings.tool_toggle=Toggle Settings Tool

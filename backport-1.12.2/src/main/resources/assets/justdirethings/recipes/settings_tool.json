@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "  F",
+    " R ",
+    "S  "
+  ],
+  "key": {
+    "F": {
+      "type": "forge:ore_dict",
+      "ore": "ingotFerricore"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    }
+  },
+  "result": {
+    "item": "justdirethings:settings_tool"
+  }
+}
